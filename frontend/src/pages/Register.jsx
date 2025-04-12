@@ -12,12 +12,13 @@ export default function Register() {
     console.log("🔥 Submitting register form", { username, email, password });
 
     try {
-      await axios.post(`${import.meta.env.VITE_API_BASE}/users/register/`, {
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE}/users/register/`, {
         username,
         email,
         password
       });
-      console.log("✅ Registration success");
+
+      console.log("✅ Registered:", res.data);
       navigate('/login');
     } catch (err) {
       console.error("❌ Registration failed", err);
@@ -62,3 +63,4 @@ export default function Register() {
     </div>
   );
 }
+
