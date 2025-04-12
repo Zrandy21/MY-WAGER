@@ -1,4 +1,3 @@
-
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -25,3 +24,14 @@ class RegisterSerializer(serializers.ModelSerializer):
             password=password
         )
         return user
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField()
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'balance', 'is_2fa_enabled')
+
+
