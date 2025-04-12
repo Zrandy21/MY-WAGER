@@ -1,8 +1,8 @@
-
 from rest_framework import generics, status
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, get_user_model
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.permissions import IsAuthenticated
 from .serializers import RegisterSerializer, LoginSerializer, UserSerializer
 
 User = get_user_model()
@@ -29,6 +29,7 @@ class LoginView(generics.GenericAPIView):
 
 class ProfileView(generics.RetrieveAPIView):
     serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_object(self):
         return self.request.user
