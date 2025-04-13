@@ -8,5 +8,6 @@ python-decouple
 psycopg2-binary
 django-environ
 pandas
+dj-database-url
 
 
